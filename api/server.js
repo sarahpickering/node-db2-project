@@ -1,11 +1,13 @@
 const express = require("express");
-
+const carsRouter = require('./cars/cars-router')
 const server = express();
 
 server.use(express.json());
 
+server.use('/api/cars', carsRouter)
+
 server.use("*", (req, res, next) => {
-  next({ status: 400, message: "car with id not found" });
+  next({ status: 400, message: "car with id not found!" });
 });
 
 server.use((err, req, res, next) => {

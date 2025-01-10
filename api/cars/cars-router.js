@@ -1,1 +1,22 @@
-// DO YOUR MAGIC
+const express = require('express')
+const Car = require('./cars-model')
+
+const router = express.Router()
+
+router.get('/', async (req, res, next) => {
+    try {
+        const cars = await Car.getAll()
+        res.json(cars)
+    } catch (err) {
+        next(err)
+    }
+})
+router.get('/', async (req, res, next) => {
+    res.json(`get car wtih id ${req.params.id}`)
+})
+router.post('/', async (req, res, next) => {
+    res.json('post new car')
+})
+
+
+module.exports = router
